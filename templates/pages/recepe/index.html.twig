@@ -1,20 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecepeController!{% endblock %}
+{% block title %}Recette Book - Recettes{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container mt-4">
+        {% if not recepes.items is same as([]) %}
+        <h1 class="text-center mt-4">Mes Recettes</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {# <a href="{{ path('recepe.new') }}" class="btn btn-primary">Ajouter une recette</a> #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/ebenyoub/Documents/goinfre/superAgence/src/Controller/RecepeController.php'|file_link(0) }}">src/Controller/RecepeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/ebenyoub/Documents/goinfre/superAgence/templates/recepe/index.html.twig'|file_link(0) }}">templates/recepe/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <div class="count mt-4">
+            Il y a {{ recepes.getTotalItemCount }} recette{% if recepes.getTotalItemCount > 1 %}s{% endif %}
+		</div>
+
+        <table class="table table-hover mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Difficulté</th>
+                    <th scope="col">Date de création</th>
+                    <th>Edition</th>
+                    <th>Suppression</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recepe in recepes %}
+                    <tr class="table-primary">
+                        <th scope="row">{{ recepe.id }}</th>
+                        <td>{{ recepe.name }}</td>
+                        <td>{{ recepe.price }} €</td>
+                        <td>{{ recepe.difficulty }}</td>
+                        <td>{{ recepe.createAt|date("d/m/Y") }}</td>
+                        <td>
+                            todo
+                        </td>
+                        <td> 
+                            todo
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation d-flex justify-content-center mt-4">
+            {{ knp_pagination_render(recepes) }}
+        </div>
+        {% else %}
+        <h4>Il n'y a pas de recette</h4>
+        {% endif %}
+    </div>
 {% endblock %}
