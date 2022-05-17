@@ -30,10 +30,10 @@ class Ingredient
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt;
-    
-        /**
-         * Constructor
-         */
+
+    /**
+     * Constructor
+     */
 
     public function __construct() 
     {

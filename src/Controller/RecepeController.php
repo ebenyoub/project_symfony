@@ -8,6 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RecepeController extends AbstractController
 {
+    /**
+     * Undocumented function
+     *
+     * @return Response
+     */
+    
     #[Route('/recette', name: 'recepe.index', methods: ['GET'])]
     public function index(): Response
     {
